@@ -95,5 +95,60 @@ public class RoverNominalTest extends RoverTest {
         assertRoverStatus(rover, 1, 0, 'W');
     }
 
+    @Test
+    public void roverReceiveCommandToTurnLeftFacingNorth() {
+        Rover rover = new Rover(0, 0, 'N');
+        rover.move(List.of('l'));
+        assertRoverStatus(rover, 0, 0, 'W');
+    }
 
+    @Test
+    public void roverReceiveCommandToTurnLeftFacingSouth() {
+        Rover rover = new Rover(0, 0, 'S');
+        rover.move(List.of('l'));
+        assertRoverStatus(rover, 0, 0, 'E');
+    }
+
+    @Test
+    public void roverReceiveCommandToTurnLeftFacingEast() {
+        Rover rover = new Rover(0, 0, 'E');
+        rover.move(List.of('l'));
+        assertRoverStatus(rover, 0, 0, 'N');
+
+    }
+
+    @Test
+    public void roverReceiveCommandToTurnLeftFacingWest() {
+        Rover rover = new Rover(0, 0, 'W');
+        rover.move(List.of('l'));
+        assertRoverStatus(rover, 0, 0, 'S');
+    }
+
+    @Test
+    public void roverReceiveCommandToTurnRightFacingNorth() {
+        Rover rover = new Rover(0, 0, 'N');
+        rover.move(List.of('r'));
+        assertRoverStatus(rover, 0, 0, 'E');
+    }
+
+    @Test
+    public void roverReceiveCommandToTurnRightFacingSouth() {
+        Rover rover = new Rover(0, 0, 'S');
+        rover.move(List.of('r'));
+        assertRoverStatus(rover, 0, 0, 'W');
+    }
+
+    @Test
+    public void roverReceiveCommandToTurnRightFacingEast() {
+        Rover rover = new Rover(0, 0, 'E');
+        rover.move(List.of('r'));
+        assertRoverStatus(rover, 0, 0, 'S');
+    }
+
+    @Test
+    public void roverReceiveCommandToTurnRightFacingWest() {
+        Rover rover = new Rover(0, 0, 'W');
+        rover.move(List.of('r'));
+        assertRoverStatus(rover, 0, 0, 'N');
+    }
 }

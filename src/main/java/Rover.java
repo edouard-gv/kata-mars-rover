@@ -43,6 +43,26 @@ public class Rover {
                     case 'N' -> y--;
                 }
             }
+            else if (command == 'l') {
+                char newdirection = 'z';
+                switch (direction) {
+                    case 'E' -> newdirection = 'N';
+                    case 'W' -> newdirection = 'S';
+                    case 'S' -> newdirection = 'E';
+                    case 'N' -> newdirection = 'W';
+                }
+                direction = newdirection;
+            }
+            else if (command == 'r') {
+                char newdirection = 'z';
+                switch (direction) {
+                    case 'E' -> newdirection = 'S';
+                    case 'W' -> newdirection = 'N';
+                    case 'S' -> newdirection = 'W';
+                    case 'N' -> newdirection = 'E';
+                }
+                direction = newdirection;
+            }
             else {
                 errorMessage = "Unknown command: " + command;
             }
@@ -51,5 +71,15 @@ public class Rover {
 
     public String getErrorMessage() {
         return errorMessage;
+    }
+
+    @Override
+    public String toString() {
+        return "Rover{" +
+                "x=" + x +
+                ", y=" + y +
+                ", direction=" + direction +
+                ", errorMessage='" + errorMessage + '\'' +
+                '}';
     }
 }
