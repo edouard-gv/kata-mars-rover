@@ -31,6 +31,9 @@ public class Rover {
             else if (direction == 'W') {
                 x--;
             }
+            else if (direction == 'S') {
+                y--;
+            }
             else {
                 y++;
             }

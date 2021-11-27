@@ -46,6 +46,13 @@ public class RoverTest {
     }
 
     @Test
+    public void roverReceiveCommandToMoveForwardFacingSouth() {
+        Rover rover = new Rover(0, 0, 'S');
+        rover.move(List.of('f'));
+        assertRoverStatus(rover, 0, -1, 'S');
+    }
+
+    @Test
     public void roverReceiveCommandToMoveForwardFacingEastFromAnotherStartingPoint() {
         Rover rover = new Rover(1, 1, 'E');
         rover.move(List.of('f'));
