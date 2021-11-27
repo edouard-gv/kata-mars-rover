@@ -23,8 +23,8 @@ public class Rover {
         return direction;
     }
 
-    public void move(List<Character> commands) {
-        for (Character command : commands) {
+    public void move(String commands) {
+        for (Character command : commands.toCharArray()) {
             try {
                 switch (command) {
                     case 'f' -> {

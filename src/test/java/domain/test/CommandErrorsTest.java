@@ -16,14 +16,14 @@ public class CommandErrorsTest extends RoverTest {
     @Test
     public void roverReceiveCorrectCommand() {
         Rover rover = new Rover(0, 0, N, defaultMap);
-        rover.move(List.of('f'));
+        rover.move("f");
         assertNull(rover.getErrorMessage());
     }
 
     @Test
     public void roverReceivesUnknownCommand() {
         Rover rover = new Rover(0, 0, W, defaultMap);
-        rover.move(List.of('z'));
+        rover.move("z");
         assertRoverStatus(rover, 0, 0, W);
         assertEquals("Unknown command: z", rover.getErrorMessage());
     }
@@ -31,7 +31,7 @@ public class CommandErrorsTest extends RoverTest {
     @Test
     public void roverReceivesUnknownCommandAfterAGoodMove() {
         Rover rover = new Rover(0, 0, W, defaultMap);
-        rover.move(List.of('f', 'z'));
+        rover.move("fz");
         assertRoverStatus(rover, -1, 0, W);
         assertEquals("Unknown command: z", rover.getErrorMessage());
     }
