@@ -66,5 +66,12 @@ public class RoverTest {
         assertRoverStatus(rover, -1, 0, 'W');
     }
 
+    @Test
+    public void roverReceivesTwoCommandsToMoveForwardFacingWest() {
+        Rover rover = new Rover(0, 0, 'W');
+        rover.move(List.of('f', 'f'));
+        assertRoverStatus(rover, -2, 0, 'W');
+    }
+
 
 }
