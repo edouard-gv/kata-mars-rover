@@ -23,7 +23,11 @@ public class Rover {
         return direction;
     }
 
-    public void move(List<String> commands) {
-        //x=1;
+    public void move(List<Character> commands) {
+        for (Character command : commands) {
+            y++;
+        }
+
+
     }
 }
