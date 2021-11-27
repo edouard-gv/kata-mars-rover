@@ -1,3 +1,5 @@
+package domain;
+
 public class ObstacleException extends Throwable {
     private Position position;
 
