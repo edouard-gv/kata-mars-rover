@@ -1,7 +1,7 @@
 package domain;
 
 public class ObstacleException extends Throwable {
-    private Position position;
+    private final Position position;
 
     public ObstacleException(Position position) {
         this.position = position;

@@ -1,7 +1,5 @@
 package domain.test;
 
-import java.util.List;
-
 import domain.Rover;
 import org.junit.jupiter.api.Test;
 

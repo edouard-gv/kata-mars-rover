@@ -2,7 +2,6 @@ package domain.test;
 
 import domain.Rover;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 
 import static domain.Direction.*;
 

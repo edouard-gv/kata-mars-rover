@@ -33,6 +33,7 @@ public class ObstacleTest extends RoverTest {
     @Test
     public void reallyStopsWhenObstacleAtNorthFacingNorthGoingForward() {
         Rover rover = new Rover(0, 0, N, mapWithAnObstacle);
+        //noinspection SpellCheckingInspection
         rover.move("ffrf");
         assertRoverStatus(rover, 0, 0, N);
         assertEquals("Obstacle found at 0,1", rover.getErrorMessage());
