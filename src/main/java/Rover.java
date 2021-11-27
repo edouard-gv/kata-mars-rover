@@ -31,48 +31,48 @@ public class Rover {
         for (Character command : commands) {
             switch (command) {
                 case 'f' -> {
-                    int new_x = x;
-                    int new_y = y;
+                    int newX = x;
+                    int newY = y;
                     switch (direction) {
-                        case 'E' -> new_x = map.increase(x);
-                        case 'W' -> new_x = map.decrease(x);
-                        case 'S' -> new_y = map.decrease(y);
-                        case 'N' -> new_y = map.increase(y);
+                        case 'E' -> newX = map.increase(x);
+                        case 'W' -> newX = map.decrease(x);
+                        case 'S' -> newY = map.decrease(y);
+                        case 'N' -> newY = map.increase(y);
                     }
-                    if (map.hasObstacleAt(new_x, new_y)) {
-                        errorMessage = "Obstacle found at "+new_x+","+new_y;
+                    if (map.hasObstacleAt(new Position(newX, newY))) {
+                        errorMessage = "Obstacle found at "+newX+","+newY;
                     }
                     else {
-                        x = new_x;
-                        y = new_y;
+                        x = newX;
+                        y = newY;
                     }
                 }
                 case 'b' -> {
-                    int new_x = x;
-                    int new_y = y;
+                    int newX = x;
+                    int newY = y;
                     switch (direction) {
-                        case 'E' -> new_x = map.decrease(x);
-                        case 'W' -> new_x = map.increase(x);
-                        case 'S' -> new_y = map.increase(y);
-                        case 'N' -> new_y = map.decrease(y);
+                        case 'E' -> newX = map.decrease(x);
+                        case 'W' -> newX = map.increase(x);
+                        case 'S' -> newY = map.increase(y);
+                        case 'N' -> newY = map.decrease(y);
                     }
-                    if (map.hasObstacleAt(new_x, new_y)) {
-                        errorMessage = "Obstacle found at "+new_x+","+new_y;
+                    if (map.hasObstacleAt(new Position(newX, newY))) {
+                        errorMessage = "Obstacle found at "+newX+","+newY;
                     }
                     else {
-                        x = new_x;
-                        y = new_y;
+                        x = newX;
+                        y = newY;
                     }
                 }
                 case 'l' -> {
-                    char newdirection = 'z';
+                    char newDirection = 'z';
                     switch (direction) {
-                        case 'E' -> newdirection = 'N';
-                        case 'W' -> newdirection = 'S';
-                        case 'S' -> newdirection = 'E';
-                        case 'N' -> newdirection = 'W';
+                        case 'E' -> newDirection = 'N';
+                        case 'W' -> newDirection = 'S';
+                        case 'S' -> newDirection = 'E';
+                        case 'N' -> newDirection = 'W';
                     }
-                    direction = newdirection;
+                    direction = newDirection;
                 }
                 case 'r' -> {
                     char newdirection = 'z';

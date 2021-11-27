@@ -14,17 +14,17 @@ public class SpaceMap {
         this.obstacles = obstacles;
     }
 
-    public int increase(int pos) {
-        if (pos == size) return -size;
-        return pos+1;
+    public int increase(int coordinate) {
+        if (coordinate == size) return -size;
+        return coordinate+1;
     }
 
-    public int decrease(int pos) {
-        if (pos == -size) return size;
-        return pos-1;
+    public int decrease(int coordinate) {
+        if (coordinate == -size) return size;
+        return coordinate-1;
     }
 
-    public boolean hasObstacleAt(int x, int y) {
-        return obstacles.contains(new Position(x, y));
+    public boolean hasObstacleAt(Position position) {
+        return obstacles.contains(position);
     }
 }
