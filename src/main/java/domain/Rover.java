@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.List;
-
 public class Rover {
     private Position position;
     private Direction direction;
@@ -27,24 +25,8 @@ public class Rover {
         for (Character command : commands.toCharArray()) {
             try {
                 switch (Command.valueOf(command.toString())) {
-                    case f -> {
-                        switch (direction) {
-                            case E -> position = map.increaseX(position);
-                            case W -> position = map.decreaseX(position);
-                            case S -> position = map.decreaseY(position);
-                            case N -> position = map.increaseY(position);
-                            default -> throw new IllegalStateException("Unexpected value: " + direction);
-                        }
-                    }
-                    case b -> {
-                        switch (direction) {
-                            case E -> position = map.decreaseX(position);
-                            case W -> position = map.increaseX(position);
-                            case S -> position = map.increaseY(position);
-                            case N -> position = map.decreaseY(position);
-                            default -> throw new IllegalStateException("Unexpected value: " + direction);
-                        }
-                    }
+                    case f -> position = goForward(direction);
+                    case b -> position = goForward(direction.invert());
                     case l -> direction = direction.turnLeft();
                     case r -> direction = direction.turnRight();
                 }
@@ -55,6 +37,24 @@ public class Rover {
                 errorMessage = "Unknown command: " + command;
                 return;
             }
+        }
+    }
+
+    private Position goForward(Direction direction) throws ObstacleException {
+        switch (direction) {
+            case E -> {
+                return map.increaseX(position);
+            }
+            case W -> {
+                return map.decreaseX(position);
+            }
+            case S -> {
+                return map.decreaseY(position);
+            }
+            case N -> {
+                return map.increaseY(position);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + this.direction);
         }
     }
 
