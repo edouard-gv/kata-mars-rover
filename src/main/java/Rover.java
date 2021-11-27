@@ -27,44 +27,48 @@ public class Rover {
 
     public void move(List<Character> commands) {
         for (Character command : commands) {
-            if (command == 'f') {
-                switch (direction) {
-                    case 'E' -> x++;
-                    case 'W' -> x--;
-                    case 'S' -> y--;
-                    case 'N' -> y++;
+            switch (command) {
+                case 'f':
+                    switch (direction) {
+                        case 'E' -> x++;
+                        case 'W' -> x--;
+                        case 'S' -> y--;
+                        case 'N' -> y++;
+                    }
+                    break;
+                case 'b':
+                    switch (direction) {
+                        case 'E' -> x--;
+                        case 'W' -> x++;
+                        case 'S' -> y++;
+                        case 'N' -> y--;
+                    }
+                    break;
+                case 'l': {
+                    char newdirection = 'z';
+                    switch (direction) {
+                        case 'E' -> newdirection = 'N';
+                        case 'W' -> newdirection = 'S';
+                        case 'S' -> newdirection = 'E';
+                        case 'N' -> newdirection = 'W';
+                    }
+                    direction = newdirection;
+                    break;
                 }
-            }
-            else if (command == 'b') {
-                switch (direction) {
-                    case 'E' -> x--;
-                    case 'W' -> x++;
-                    case 'S' -> y++;
-                    case 'N' -> y--;
+                case 'r': {
+                    char newdirection = 'z';
+                    switch (direction) {
+                        case 'E' -> newdirection = 'S';
+                        case 'W' -> newdirection = 'N';
+                        case 'S' -> newdirection = 'W';
+                        case 'N' -> newdirection = 'E';
+                    }
+                    direction = newdirection;
+                    break;
                 }
-            }
-            else if (command == 'l') {
-                char newdirection = 'z';
-                switch (direction) {
-                    case 'E' -> newdirection = 'N';
-                    case 'W' -> newdirection = 'S';
-                    case 'S' -> newdirection = 'E';
-                    case 'N' -> newdirection = 'W';
-                }
-                direction = newdirection;
-            }
-            else if (command == 'r') {
-                char newdirection = 'z';
-                switch (direction) {
-                    case 'E' -> newdirection = 'S';
-                    case 'W' -> newdirection = 'N';
-                    case 'S' -> newdirection = 'W';
-                    case 'N' -> newdirection = 'E';
-                }
-                direction = newdirection;
-            }
-            else {
-                errorMessage = "Unknown command: " + command;
+                default:
+                    errorMessage = "Unknown command: " + command;
+                    break;
             }
         }
     }
