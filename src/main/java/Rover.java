@@ -23,62 +23,48 @@ public class Rover {
 
     public void move(List<Character> commands) {
         for (Character command : commands) {
-            switch (command) {
-                case 'f' -> {
-                    Position newPosition;
-                    switch (direction) {
-                        case 'E' -> newPosition = map.increaseX(position);
-                        case 'W' -> newPosition = map.decreaseX(position);
-                        case 'S' -> newPosition = map.decreaseY(position);
-                        case 'N' -> newPosition = map.increaseY(position);
-                        default -> throw new IllegalStateException("Unexpected value: " + direction);
+            try {
+                switch (command) {
+                    case 'f' -> {
+                        switch (direction) {
+                            case 'E' -> position = map.increaseX(position);
+                            case 'W' -> position = map.decreaseX(position);
+                            case 'S' -> position = map.decreaseY(position);
+                            case 'N' -> position = map.increaseY(position);
+                            default -> throw new IllegalStateException("Unexpected value: " + direction);
+                        }
                     }
-                    if (map.hasObstacleAt(newPosition)) {
-                        errorMessage = "Obstacle found at "+newPosition;
+                    case 'b' -> {
+                        switch (direction) {
+                            case 'E' -> position = map.decreaseX(position);
+                            case 'W' -> position = map.increaseX(position);
+                            case 'S' -> position = map.increaseY(position);
+                            case 'N' -> position = map.decreaseY(position);
+                            default -> throw new IllegalStateException("Unexpected value: " + direction);
+                        }
                     }
-                    else {
-                        position = newPosition;
+                    case 'l' -> {
+                        switch (direction) {
+                            case 'E' -> direction = 'N';
+                            case 'W' -> direction = 'S';
+                            case 'S' -> direction = 'E';
+                            case 'N' -> direction = 'W';
+                            default -> throw new IllegalStateException("Unexpected value: " + direction);
+                        }
                     }
+                    case 'r' -> {
+                        switch (direction) {
+                            case 'E' -> direction = 'S';
+                            case 'W' -> direction = 'N';
+                            case 'S' -> direction = 'W';
+                            case 'N' -> direction = 'E';
+                            default -> throw new IllegalStateException("Unexpected value: " + direction);
+                        }
+                    }
+                    default -> errorMessage = "Unknown command: " + command;
                 }
-                case 'b' -> {
-                    Position newPosition;
-                    switch (direction) {
-                        case 'E' -> newPosition = map.decreaseX(position);
-                        case 'W' -> newPosition = map.increaseX(position);
-                        case 'S' -> newPosition = map.increaseY(position);
-                        case 'N' -> newPosition = map.decreaseY(position);
-                        default -> throw new IllegalStateException("Unexpected value: " + direction);
-                    }
-                    if (map.hasObstacleAt(newPosition)) {
-                        errorMessage = "Obstacle found at "+newPosition;
-                    }
-                    else {
-                        position = newPosition;
-                    }
-                }
-                case 'l' -> {
-                    char newDirection;
-                    switch (direction) {
-                        case 'E' -> newDirection = 'N';
-                        case 'W' -> newDirection = 'S';
-                        case 'S' -> newDirection = 'E';
-                        case 'N' -> newDirection = 'W';
-                        default -> throw new IllegalStateException("Unexpected value: " + direction);
-                    }
-                    direction = newDirection;
-                }
-                case 'r' -> {
-                    char newdirection;
-                    switch (direction) {
-                        case 'E' -> newdirection = 'S';
-                        case 'W' -> newdirection = 'N';
-                        case 'S' -> newdirection = 'W';
-                        case 'N' -> newdirection = 'E';
-                        default -> throw new IllegalStateException("Unexpected value: " + direction);
-                    }
-                    direction = newdirection;
-                }
-                default -> errorMessage = "Unknown command: " + command;
+            } catch (ObstacleException obstacle) {
+                errorMessage = "Obstacle found at " + obstacle.position();
             }
         }
     }
