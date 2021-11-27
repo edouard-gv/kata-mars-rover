@@ -50,6 +50,7 @@ public class Rover {
                 }
             } catch (ObstacleException obstacle) {
                 errorMessage = "Obstacle found at " + obstacle.position();
+                return;
             } catch (IllegalArgumentException iae) {
                 errorMessage = "Unknown command: " + command;
                 return;
