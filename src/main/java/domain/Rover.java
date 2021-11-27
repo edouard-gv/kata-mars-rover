@@ -26,8 +26,8 @@ public class Rover {
     public void move(String commands) {
         for (Character command : commands.toCharArray()) {
             try {
-                switch (command) {
-                    case 'f' -> {
+                switch (Command.valueOf(command.toString())) {
+                    case f -> {
                         switch (direction) {
                             case E -> position = map.increaseX(position);
                             case W -> position = map.decreaseX(position);
@@ -36,7 +36,7 @@ public class Rover {
                             default -> throw new IllegalStateException("Unexpected value: " + direction);
                         }
                     }
-                    case 'b' -> {
+                    case b -> {
                         switch (direction) {
                             case E -> position = map.decreaseX(position);
                             case W -> position = map.increaseX(position);
@@ -45,19 +45,14 @@ public class Rover {
                             default -> throw new IllegalStateException("Unexpected value: " + direction);
                         }
                     }
-                    case 'l' -> {
-                        direction = direction.turnLeft();
-                    }
-                    case 'r' -> {
-                        direction = direction.turnRight();
-                    }
-                    default -> {
-                        errorMessage = "Unknown command: " + command;
-                        return;
-                    }
+                    case l -> direction = direction.turnLeft();
+                    case r -> direction = direction.turnRight();
                 }
             } catch (ObstacleException obstacle) {
                 errorMessage = "Obstacle found at " + obstacle.position();
+            } catch (IllegalArgumentException iae) {
+                errorMessage = "Unknown command: " + command;
+                return;
             }
         }
     }
