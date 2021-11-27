@@ -5,12 +5,14 @@ public class Rover {
     private int y;
     private char direction;
     private String errorMessage;
+    private SpaceMap map;
 
-    public Rover(int x, int y, char direction) {
+    public Rover(int x, int y, char direction, SpaceMap map) {
         this.x = x;
         this.y = y;
         this.direction = direction;
         this.errorMessage = null;
+        this.map = map;
     }
 
     public int x() {
@@ -35,6 +37,8 @@ public class Rover {
                         case 'S' -> y--;
                         case 'N' -> y++;
                     }
+                    if (x == 6) x=-5;
+
                     break;
                 case 'b':
                     switch (direction) {
