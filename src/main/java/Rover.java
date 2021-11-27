@@ -38,6 +38,9 @@ public class Rover {
                         case 'N' -> y++;
                     }
                     if (x == 6) x=-5;
+                    if (x == -6) x=5;
+                    if (y == 6) y=-5;
+                    if (y == -6) y=5;
 
                     break;
                 case 'b':
@@ -47,6 +50,11 @@ public class Rover {
                         case 'S' -> y++;
                         case 'N' -> y--;
                     }
+                    if (x == 6) x=-5;
+                    if (x == -6) x=5;
+                    if (y == 6) y=-5;
+                    if (y == -6) y=5;
+
                     break;
                 case 'l': {
                     char newdirection = 'z';
