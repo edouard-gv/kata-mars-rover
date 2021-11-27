@@ -1,26 +1,20 @@
 import java.util.List;
 
 public class Rover {
-    private int x;
-    private int y;
+    private Position position;
     private char direction;
     private String errorMessage;
-    private SpaceMap map;
+    private final SpaceMap map;
 
     public Rover(int x, int y, char direction, SpaceMap map) {
-        this.x = x;
-        this.y = y;
+        position = new Position(x, y);
         this.direction = direction;
         this.errorMessage = null;
         this.map = map;
     }
 
-    public int x() {
-        return x;
-    }
-
-    public int y() {
-        return y;
+    public Position position() {
+        return position;
     }
 
     public char direction() {
@@ -31,37 +25,35 @@ public class Rover {
         for (Character command : commands) {
             switch (command) {
                 case 'f' -> {
-                    int newX = x;
-                    int newY = y;
+                    Position newPosition;
                     switch (direction) {
-                        case 'E' -> newX = map.increase(x);
-                        case 'W' -> newX = map.decrease(x);
-                        case 'S' -> newY = map.decrease(y);
-                        case 'N' -> newY = map.increase(y);
+                        case 'E' -> newPosition = new Position(map.increase(position.x()), position.y());
+                        case 'W' -> newPosition = new Position(map.decrease(position.x()), position.y());
+                        case 'S' -> newPosition = new Position(position.x(), map.decrease(position.y()));
+                        case 'N' -> newPosition = new Position(position.x(), map.increase(position.y()));
+                        default -> throw new IllegalStateException("Unexpected value: " + direction);
                     }
-                    if (map.hasObstacleAt(new Position(newX, newY))) {
-                        errorMessage = "Obstacle found at "+newX+","+newY;
+                    if (map.hasObstacleAt(newPosition)) {
+                        errorMessage = "Obstacle found at "+newPosition;
                     }
                     else {
-                        x = newX;
-                        y = newY;
+                        position = newPosition;
                     }
                 }
                 case 'b' -> {
-                    int newX = x;
-                    int newY = y;
+                    Position newPosition;
                     switch (direction) {
-                        case 'E' -> newX = map.decrease(x);
-                        case 'W' -> newX = map.increase(x);
-                        case 'S' -> newY = map.increase(y);
-                        case 'N' -> newY = map.decrease(y);
+                        case 'E' -> newPosition = new Position(map.decrease(position.x()), position.y());
+                        case 'W' -> newPosition = new Position(map.increase(position.x()), position.y());
+                        case 'S' -> newPosition = new Position(position.x(), map.increase(position.y()));
+                        case 'N' -> newPosition = new Position(position.x(), map.decrease(position.y()));
+                        default -> throw new IllegalStateException("Unexpected value: " + direction);
                     }
-                    if (map.hasObstacleAt(new Position(newX, newY))) {
-                        errorMessage = "Obstacle found at "+newX+","+newY;
+                    if (map.hasObstacleAt(newPosition)) {
+                        errorMessage = "Obstacle found at "+newPosition;
                     }
                     else {
-                        x = newX;
-                        y = newY;
+                        position = newPosition;
                     }
                 }
                 case 'l' -> {
@@ -96,8 +88,7 @@ public class Rover {
     @Override
     public String toString() {
         return "Rover{" +
-                "x=" + x +
-                ", y=" + y +
+                "position=" + position +
                 ", direction=" + direction +
                 ", errorMessage='" + errorMessage + '\'' +
                 '}';
