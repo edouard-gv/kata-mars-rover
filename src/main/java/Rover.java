@@ -25,7 +25,12 @@ public class Rover {
 
     public void move(List<Character> commands) {
         for (Character command : commands) {
-            y++;
+            if (direction == 'E') {
+                x++;
+            }
+            else {
+                y++;
+            }
         }
 
 

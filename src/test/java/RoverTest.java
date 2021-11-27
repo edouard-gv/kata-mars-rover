@@ -37,4 +37,16 @@ public class RoverTest {
         assertEquals(1, rover.y());
         assertEquals('N', rover.direction());
     }
+
+    @Test
+    public void roverReceiveCommandToMoveForwardFacingEast() {
+        Rover rover = new Rover(0, 0, 'E');
+        List<Character> commands = List.of('f'); //is immutable by construct
+        rover.move(commands);
+        assertEquals(1, rover.x());
+        assertEquals(0, rover.y());
+        assertEquals('E', rover.direction());
+    }
+
+
 }
