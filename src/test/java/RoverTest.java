@@ -18,44 +18,38 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RoverTest {
 
+    private void assertRoverStatus(Rover rover, int expected_x, int expected_y, char expected_direction) {
+        assertEquals(expected_x, rover.x());
+        assertEquals(expected_y, rover.y());
+        assertEquals(expected_direction, rover.direction());
+    }
+
     @Test
     public void roverReceiveNoCommands() {
         Rover rover = new Rover(0, 0, 'N');
-        List<Character> commands = List.of(); //is immutable by construct
-        rover.move(commands);
-        assertEquals(0, rover.x());
-        assertEquals(0, rover.y());
-        assertEquals('N', rover.direction());
+        rover.move(List.of());
+        assertRoverStatus(rover, 0, 0, 'N');
     }
 
     @Test
     public void roverReceiveCommandToMoveForwardFacingNorth() {
         Rover rover = new Rover(0, 0, 'N');
-        List<Character> commands = List.of('f'); //is immutable by construct
-        rover.move(commands);
-        assertEquals(0, rover.x());
-        assertEquals(1, rover.y());
-        assertEquals('N', rover.direction());
+        rover.move(List.of('f'));
+        assertRoverStatus(rover, 0, 1, 'N');
     }
 
     @Test
     public void roverReceiveCommandToMoveForwardFacingEast() {
         Rover rover = new Rover(0, 0, 'E');
-        List<Character> commands = List.of('f'); //is immutable by construct
-        rover.move(commands);
-        assertEquals(1, rover.x());
-        assertEquals(0, rover.y());
-        assertEquals('E', rover.direction());
+        rover.move(List.of('f'));
+        assertRoverStatus(rover, 1, 0, 'E');
     }
 
     @Test
     public void roverReceiveCommandToMoveForwardFacingEastFromAnotherStartingPoint() {
         Rover rover = new Rover(1, 1, 'E');
-        List<Character> commands = List.of('f'); //is immutable by construct
-        rover.move(commands);
-        assertEquals(2, rover.x());
-        assertEquals(1, rover.y());
-        assertEquals('E', rover.direction());
+        rover.move(List.of('f'));
+        assertRoverStatus(rover, 2, 1, 'E');
     }
 
 
