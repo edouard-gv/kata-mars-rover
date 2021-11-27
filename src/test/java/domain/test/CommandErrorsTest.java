@@ -35,4 +35,21 @@ public class CommandErrorsTest extends RoverTest {
         assertRoverStatus(rover, -1, 0, W);
         assertEquals("Unknown command: z", rover.getErrorMessage());
     }
+
+    @Test
+    public void roverReceivesSeveralUnknownCommandsAfterAGoodMove() {
+        Rover rover = new Rover(0, 0, W, defaultMap);
+        rover.move("fzx");
+        assertRoverStatus(rover, -1, 0, W);
+        assertEquals("Unknown command: z", rover.getErrorMessage());
+    }
+
+    @Test
+    public void roverStopsAtFirstUnknownCommandAfterAGoodMove() {
+        Rover rover = new Rover(0, 0, W, defaultMap);
+        rover.move("fzf");
+        assertRoverStatus(rover, -1, 0, W);
+        assertEquals("Unknown command: z", rover.getErrorMessage());
+    }
+
 }

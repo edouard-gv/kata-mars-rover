@@ -51,7 +51,10 @@ public class Rover {
                     case 'r' -> {
                         direction = direction.turnRight();
                     }
-                    default -> errorMessage = "Unknown command: " + command;
+                    default -> {
+                        errorMessage = "Unknown command: " + command;
+                        return;
+                    }
                 }
             } catch (ObstacleException obstacle) {
                 errorMessage = "Obstacle found at " + obstacle.position();
