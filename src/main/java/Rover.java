@@ -30,33 +30,27 @@ public class Rover {
     public void move(List<Character> commands) {
         for (Character command : commands) {
             switch (command) {
-                case 'f':
+                case 'f' -> {
                     switch (direction) {
-                        case 'E' -> x++;
-                        case 'W' -> x--;
-                        case 'S' -> y--;
-                        case 'N' -> y++;
+                        case 'E' -> x = map.increase(x);
+                        case 'W' -> x = map.decrease(x);
+                        case 'S' -> y = map.decrease(y);
+                        case 'N' -> y = map.increase(y);
                     }
-                    if (x == 6) x=-5;
-                    if (x == -6) x=5;
-                    if (y == 6) y=-5;
-                    if (y == -6) y=5;
-
-                    break;
-                case 'b':
+                }
+                case 'b' -> {
                     switch (direction) {
                         case 'E' -> x--;
                         case 'W' -> x++;
                         case 'S' -> y++;
                         case 'N' -> y--;
                     }
-                    if (x == 6) x=-5;
-                    if (x == -6) x=5;
-                    if (y == 6) y=-5;
-                    if (y == -6) y=5;
-
-                    break;
-                case 'l': {
+                    if (x == 6) x = -5;
+                    if (x == -6) x = 5;
+                    if (y == 6) y = -5;
+                    if (y == -6) y = 5;
+                }
+                case 'l' -> {
                     char newdirection = 'z';
                     switch (direction) {
                         case 'E' -> newdirection = 'N';
@@ -65,9 +59,8 @@ public class Rover {
                         case 'N' -> newdirection = 'W';
                     }
                     direction = newdirection;
-                    break;
                 }
-                case 'r': {
+                case 'r' -> {
                     char newdirection = 'z';
                     switch (direction) {
                         case 'E' -> newdirection = 'S';
@@ -76,11 +69,8 @@ public class Rover {
                         case 'N' -> newdirection = 'E';
                     }
                     direction = newdirection;
-                    break;
                 }
-                default:
-                    errorMessage = "Unknown command: " + command;
-                    break;
+                default -> errorMessage = "Unknown command: " + command;
             }
         }
     }

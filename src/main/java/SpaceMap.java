@@ -6,7 +6,16 @@ public class SpaceMap {
     }
 
     public int putBack(int pos) {
-        int remainder = (pos + size) % (size*2+1);
-        return (remainder < 0? remainder + size*2+1 - size: remainder - size);
+        if (pos == size+1) return -size;
+        if (pos == -size-1) return size;
+        return pos;
+    }
+
+    public int increase(int pos) {
+        return putBack(pos+1);
+    }
+
+    public int decrease(int pos) {
+        return putBack(pos-1);
     }
 }
