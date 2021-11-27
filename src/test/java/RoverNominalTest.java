@@ -66,4 +66,34 @@ public class RoverNominalTest extends RoverTest {
         rover.move(List.of('f', 'f'));
         assertRoverStatus(rover, -2, 0, 'W');
     }
+
+    @Test
+    public void roverReceiveCommandToMoveBackwardFacingNorth() {
+        Rover rover = new Rover(0, 0, 'N');
+        rover.move(List.of('b'));
+        assertRoverStatus(rover, 0, -1, 'N');
+    }
+
+    @Test
+    public void roverReceiveCommandToMoveBackwardFacingEast() {
+        Rover rover = new Rover(0, 0, 'E');
+        rover.move(List.of('b'));
+        assertRoverStatus(rover, -1, 0, 'E');
+    }
+
+    @Test
+    public void roverReceiveCommandToMoveBackwardFacingSouth() {
+        Rover rover = new Rover(0, 0, 'S');
+        rover.move(List.of('b'));
+        assertRoverStatus(rover, 0, 1, 'S');
+    }
+
+    @Test
+    public void roverReceiveCommandToMoveBackwardFacingWest() {
+        Rover rover = new Rover(0, 0, 'W');
+        rover.move(List.of('b'));
+        assertRoverStatus(rover, 1, 0, 'W');
+    }
+
+
 }

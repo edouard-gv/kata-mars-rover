@@ -35,6 +35,14 @@ public class Rover {
                     case 'N' -> y++;
                 }
             }
+            else if (command == 'b') {
+                switch (direction) {
+                    case 'E' -> x--;
+                    case 'W' -> x++;
+                    case 'S' -> y++;
+                    case 'N' -> y--;
+                }
+            }
             else {
                 errorMessage = "Unknown command: " + command;
             }
