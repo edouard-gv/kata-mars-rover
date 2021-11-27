@@ -27,4 +27,20 @@ public class SpaceMap {
     public boolean hasObstacleAt(Position position) {
         return obstacles.contains(position);
     }
+
+    public Position increaseX(Position position) {
+        return new Position(increase(position.x()), position.y());
+    }
+
+    public Position decreaseX(Position position) {
+        return new Position(decrease(position.x()), position.y());
+    }
+
+    public Position increaseY(Position position) {
+        return new Position(position.x(), increase(position.y()));
+    }
+
+    public Position decreaseY(Position position) {
+        return new Position(position.x(), decrease(position.y()));
+    }
 }
