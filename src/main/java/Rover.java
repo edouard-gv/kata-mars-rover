@@ -40,10 +40,10 @@ public class Rover {
                 }
                 case 'b' -> {
                     switch (direction) {
-                        case 'E' -> x--;
-                        case 'W' -> x++;
-                        case 'S' -> y++;
-                        case 'N' -> y--;
+                        case 'E' -> x = map.decrease(x);
+                        case 'W' -> x = map.increase(x);
+                        case 'S' -> y = map.increase(y);
+                        case 'N' -> y = map.decrease(y);
                     }
                     if (x == 6) x = -5;
                     if (x == -6) x = 5;

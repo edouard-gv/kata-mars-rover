@@ -5,17 +5,13 @@ public class SpaceMap {
         this.size = size;
     }
 
-    public int putBack(int pos) {
-        if (pos == size+1) return -size;
-        if (pos == -size-1) return size;
-        return pos;
-    }
-
     public int increase(int pos) {
-        return putBack(pos+1);
+        if (pos == size) return -size;
+        return pos+1;
     }
 
     public int decrease(int pos) {
-        return putBack(pos-1);
+        if (pos == -size) return size;
+        return pos-1;
     }
 }
