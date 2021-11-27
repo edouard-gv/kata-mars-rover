@@ -25,20 +25,12 @@ public class Rover {
 
     public void move(List<Character> commands) {
         for (Character command : commands) {
-            if (direction == 'E') {
-                x++;
-            }
-            else if (direction == 'W') {
-                x--;
-            }
-            else if (direction == 'S') {
-                y--;
-            }
-            else {
-                y++;
+            switch (direction) {
+                case 'E' -> x++;
+                case 'W' -> x--;
+                case 'S' -> y--;
+                case 'N' -> y++;
             }
         }
-
-
     }
 }
