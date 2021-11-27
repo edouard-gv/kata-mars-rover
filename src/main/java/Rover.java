@@ -31,26 +31,37 @@ public class Rover {
         for (Character command : commands) {
             switch (command) {
                 case 'f' -> {
+                    int new_x = x;
                     int new_y = y;
                     switch (direction) {
-                        case 'E' -> x = map.increase(x);
-                        case 'W' -> x = map.decrease(x);
+                        case 'E' -> new_x = map.increase(x);
+                        case 'W' -> new_x = map.decrease(x);
                         case 'S' -> new_y = map.decrease(y);
                         case 'N' -> new_y = map.increase(y);
                     }
-                    if (map.hasObstacleAt(x, new_y)) {
-                        errorMessage = "Obstacle found at "+x+","+new_y;
+                    if (map.hasObstacleAt(new_x, new_y)) {
+                        errorMessage = "Obstacle found at "+new_x+","+new_y;
                     }
                     else {
+                        x = new_x;
                         y = new_y;
                     }
                 }
                 case 'b' -> {
+                    int new_x = x;
+                    int new_y = y;
                     switch (direction) {
-                        case 'E' -> x = map.decrease(x);
-                        case 'W' -> x = map.increase(x);
-                        case 'S' -> y = map.increase(y);
-                        case 'N' -> y = map.decrease(y);
+                        case 'E' -> new_x = map.decrease(x);
+                        case 'W' -> new_x = map.increase(x);
+                        case 'S' -> new_y = map.increase(y);
+                        case 'N' -> new_y = map.decrease(y);
+                    }
+                    if (map.hasObstacleAt(new_x, new_y)) {
+                        errorMessage = "Obstacle found at "+new_x+","+new_y;
+                    }
+                    else {
+                        x = new_x;
+                        y = new_y;
                     }
                 }
                 case 'l' -> {
