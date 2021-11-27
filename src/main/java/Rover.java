@@ -31,11 +31,18 @@ public class Rover {
         for (Character command : commands) {
             switch (command) {
                 case 'f' -> {
+                    int new_y = y;
                     switch (direction) {
                         case 'E' -> x = map.increase(x);
                         case 'W' -> x = map.decrease(x);
-                        case 'S' -> y = map.decrease(y);
-                        case 'N' -> y = map.increase(y);
+                        case 'S' -> new_y = map.decrease(y);
+                        case 'N' -> new_y = map.increase(y);
+                    }
+                    if (map.hasObstacleAt(x, new_y)) {
+                        errorMessage = "Obstacle found at "+x+","+new_y;
+                    }
+                    else {
+                        y = new_y;
                     }
                 }
                 case 'b' -> {
@@ -45,10 +52,6 @@ public class Rover {
                         case 'S' -> y = map.increase(y);
                         case 'N' -> y = map.decrease(y);
                     }
-                    if (x == 6) x = -5;
-                    if (x == -6) x = 5;
-                    if (y == 6) y = -5;
-                    if (y == -6) y = 5;
                 }
                 case 'l' -> {
                     char newdirection = 'z';
