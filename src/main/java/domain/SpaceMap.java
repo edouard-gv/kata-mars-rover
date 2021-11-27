@@ -24,26 +24,38 @@ public class SpaceMap {
         return coordinate == -size ? size : coordinate - 1;
     }
 
-    public Position checkPosition(Position position) throws ObstacleException {
-        if (obstacles.contains(position)) {
-            throw new ObstacleException(position);
+    private boolean checkPosition(Position position) {
+        return !obstacles.contains(position);
+    }
+
+    private Position increaseX(Position position) {
+        return new Position(increase(position.x()), position.y());
+    }
+
+    private Position decreaseX(Position position) {
+        return new Position(decrease(position.x()), position.y());
+    }
+
+    private Position increaseY(Position position) {
+        return new Position(position.x(), increase(position.y()));
+    }
+
+    private Position decreaseY(Position position) {
+        return new Position(position.x(), decrease(position.y()));
+    }
+
+    Position moveForward(Position position, Direction direction) throws ObstacleException {
+        Position newPosition;
+        switch (direction) {
+            case E -> newPosition = increaseX(position);
+            case W -> newPosition =  decreaseX(position);
+            case S -> newPosition =  decreaseY(position);
+            case N -> newPosition =  increaseY(position);
+            default -> throw new IllegalStateException("Unexpected value: " + direction);
         }
-        return position;
-    }
-
-    public Position increaseX(Position position) throws ObstacleException {
-        return checkPosition(new Position(increase(position.x()), position.y()));
-    }
-
-    public Position decreaseX(Position position) throws ObstacleException {
-        return checkPosition(new Position(decrease(position.x()), position.y()));
-    }
-
-    public Position increaseY(Position position) throws ObstacleException {
-        return checkPosition(new Position(position.x(), increase(position.y())));
-    }
-
-    public Position decreaseY(Position position) throws ObstacleException {
-        return checkPosition(new Position(position.x(), decrease(position.y())));
+        if (!checkPosition(newPosition)) {
+            throw new ObstacleException(newPosition);
+        }
+        return newPosition;
     }
 }

@@ -25,8 +25,8 @@ public class Rover {
         for (Character command : commands.toCharArray()) {
             try {
                 switch (Command.valueOf(command.toString())) {
-                    case f -> position = goForward(direction);
-                    case b -> position = goForward(direction.invert());
+                    case f -> position = map.moveForward(position, direction);
+                    case b -> position = map.moveForward(position, direction.invert());
                     case l -> direction = direction.turnLeft();
                     case r -> direction = direction.turnRight();
                 }
@@ -37,24 +37,6 @@ public class Rover {
                 errorMessage = "Unknown command: " + command;
                 return;
             }
-        }
-    }
-
-    private Position goForward(Direction direction) throws ObstacleException {
-        switch (direction) {
-            case E -> {
-                return map.increaseX(position);
-            }
-            case W -> {
-                return map.decreaseX(position);
-            }
-            case S -> {
-                return map.decreaseY(position);
-            }
-            case N -> {
-                return map.increaseY(position);
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + this.direction);
         }
     }
 
