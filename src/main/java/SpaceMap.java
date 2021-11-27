@@ -15,27 +15,19 @@ public class SpaceMap {
     }
 
     private int increase(int coordinate) {
-        if (coordinate == size) return -size;
-        return coordinate+1;
+        return coordinate == size ? -size : coordinate + 1;
     }
 
     private int decrease(int coordinate) {
-        if (coordinate == -size) return size;
-        return coordinate-1;
-    }
-
-    public boolean hasObstacleAt(Position position) {
-        return obstacles.contains(position);
+        return coordinate == -size ? size : coordinate - 1;
     }
 
     public Position checkPosition(Position position) throws ObstacleException {
-        if (hasObstacleAt(position)) {
+        if (obstacles.contains(position)) {
             throw new ObstacleException(position);
         }
         return position;
     }
-
-
 
     public Position increaseX(Position position) throws ObstacleException {
         return checkPosition(new Position(increase(position.x()), position.y()));

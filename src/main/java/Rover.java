@@ -44,13 +44,14 @@ public class Rover {
                         }
                     }
                     case 'l' -> {
-                        switch (direction) {
+                        direction = Direction.valueOf(String.valueOf(direction)).turnLeft().toString().charAt(0);
+                        /*switch (direction) {
                             case 'E' -> direction = 'N';
                             case 'W' -> direction = 'S';
                             case 'S' -> direction = 'E';
                             case 'N' -> direction = 'W';
                             default -> throw new IllegalStateException("Unexpected value: " + direction);
-                        }
+                        }*/
                     }
                     case 'r' -> {
                         switch (direction) {
