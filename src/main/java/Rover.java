@@ -28,6 +28,9 @@ public class Rover {
             if (direction == 'E') {
                 x++;
             }
+            else if (direction == 'W') {
+                x--;
+            }
             else {
                 y++;
             }
